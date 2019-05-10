@@ -5,7 +5,7 @@ RUN apk --update add curl tar \
   && adduser -D -h /sandbox sandbox \
   # Install sandbox pre-built binary
   && cd /usr/bin \
-  && curl -sk -O "https://s3-us-west-2.amazonaws.com/getsandbox-assets/runtime-binary.tar" \
+  && curl -sk -O "https://s3.amazonaws.com/sandbox-binaries/runtime-binary.tar" \
   && tar xf runtime-binary.tar \
   && rm -rf runtime-binary.tar \
   && apk del curl tar \
