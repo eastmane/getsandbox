@@ -20,7 +20,6 @@ exports.listUsersIndex = function(req, res) {
   });
 };
 
-
 /*
  * POST /api/users
  *
@@ -38,10 +37,21 @@ exports.postUsersStore = function(req, res) {
   req.body.id = state.users.length + 1;
 
   var d = new Date(msSinceEpoch);
-  req.body.created_at = d.getUTCFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getUTCDate() + 'T' +
-    d.getUTCHours() + ':' + d.getUTCMinutes() + ':' + d.getUTCSeconds() + '-06:00';
+  req.body.created_at =
+    d.getUTCFullYear() +
+    "-" +
+    (d.getUTCMonth() + 1) +
+    "-" +
+    d.getUTCDate() +
+    "T" +
+    d.getUTCHours() +
+    ":" +
+    d.getUTCMinutes() +
+    ":" +
+    d.getUTCSeconds() +
+    "-06:00";
 
-  state.users.push(req.body)
+  state.users.push(req.body);
 
   res.status(200);
 
@@ -51,7 +61,6 @@ exports.postUsersStore = function(req, res) {
   });
 };
 
-
 /*
  * GET /api/users/{users}
  *
@@ -60,7 +69,7 @@ exports.postUsersStore = function(req, res) {
  * users(type: string) - path parameter - Unique id of the tag
  */
 exports.getUsersShow = function(req, res) {
-  req.check('users', 'Missing user id').notEmpty();
+  req.check("users", "Missing user id").notEmpty();
   if (req.validationErrors()) {
     return res.json(400, {
       status: "error",
@@ -85,7 +94,6 @@ exports.getUsersShow = function(req, res) {
   }
 };
 
-
 /*
  * PUT /api/users/{users}
  *
@@ -95,8 +103,8 @@ exports.getUsersShow = function(req, res) {
  * users(type: string) - path parameter - Unique id of the tag
  */
 exports.putUsersUpdate = function(req, res) {
-  req.check('users', 'No user id').notEmpty();
-  req.check('body', 'No content found').notEmpty();
+  req.check("users", "No user id").notEmpty();
+  req.check("body", "No content found").notEmpty();
   if (req.validationErrors()) {
     return res.json(400, {
       status: "error",
@@ -120,14 +128,13 @@ exports.putUsersUpdate = function(req, res) {
   // drop the user and subsequently readd
   state.users = _.reject(state.users, {
     id: req.params.users
-  })
+  });
   state.users.push(user);
 
   res.json({
     data: user
   });
 };
-
 
 /*
  * DELETE /api/users/{users}
@@ -137,7 +144,7 @@ exports.putUsersUpdate = function(req, res) {
  * users(type: string) - path parameter - Unique id of the tag
  */
 exports.deleteUsersDestroy = function(req, res) {
-  req.check('users', 'Missing user id').notEmpty();
+  req.check("users", "Missing user id").notEmpty();
   if (req.validationErrors()) {
     return res.json(400, {
       status: "error",
@@ -156,8 +163,8 @@ exports.deleteUsersDestroy = function(req, res) {
     });
   } else {
     state.users = _.reject(state.users, {
-      'id': req.params.users
+      id: req.params.users
     });
-    res.json(204, '');
+    res.json(204, "");
   }
 };
