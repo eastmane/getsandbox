@@ -19,6 +19,11 @@ USER sandbox
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 8080
+ARG PORT=8080
+ENV PORT=${PORT}
+ENV STATE_FILE="state.json"
+ENV RUNTIME_VERSION="VERSION_2"
 
-CMD ["java", "-jar", "/usr/bin/sandbox", "run"]
+EXPOSE ${PORT}
+
+CMD ["java", "-jar", "/usr/bin/sandbox", "--state=${STATE_FILE}", "--port=${PORT}", "--runtimeVersion=${RUNTIME_VERSION}", "run"]
