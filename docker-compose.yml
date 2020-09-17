@@ -1,5 +1,5 @@
 getsandbox:
-  image: deardooley/getsandbox
+  image: eastmane/getsandbox
   ports:
     - "8080:8080"
   volumes:

@@ -9,7 +9,7 @@ The Sandbox server will start on port 8080 using the default `main.js` [Sandbox 
 ```
 docker run --name sandbox \
   -p 8080:8080 \
-  craigmortenasos/getsandbox
+  eastmane/getsandbox
 ```
 
 You can access the api by directing your browser to `http://<docker_host>/test`.
@@ -24,7 +24,7 @@ The following command will start a sandbox container and serve the example/main.
 docker run --name sandbox \
   -p 8080:8080 \
   -v $(pwd)/example:/sandbox \
-  craigmortenasos/getsandbox
+  eastmane/getsandbox
 ```
 
 > _Note_: To include external dependencies into your test suite, just include them in the mounted directory and reference them as relative paths to the /sandbox directory.
